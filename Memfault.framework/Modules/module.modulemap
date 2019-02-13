@@ -1,0 +1,6 @@
+framework module Memfault {
+  umbrella header "Memfault-umbrella.h"
+
+  export *
+  module * { export * }
+}
