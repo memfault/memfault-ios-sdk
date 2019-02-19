@@ -1,11 +1,12 @@
 Pod::Spec.new do |spec|
   spec.name             = 'Memfault'
-  spec.version          = '0.1.0'
+  spec.version          = '0.2.0'
   spec.summary          = 'Memfault SDK for iOS'
   spec.homepage         = 'https://github.com/memfault/memfault-ios-sdk'
   spec.license          = { :type => 'MIT', :file => 'LICENSE' }
   spec.author           = { 'Memfault' => 'info@memfault.io' }
   spec.source           = { :git => 'https://github.com/memfault/memfault-ios-sdk.git', :tag => spec.version.to_s }
+  spec.swift_version    = '4.2'
   spec.ios.deployment_target = '8.0'
   spec.ios.vendored_frameworks = 'Memfault.framework'
   spec.frameworks = 'CoreBluetooth'
