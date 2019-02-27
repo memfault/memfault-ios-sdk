@@ -152,6 +152,7 @@ typedef NS_ENUM(NSUInteger, MemfaultErrorCode) {
     MemfaultErrorCode_TransportNotAvailable = 14,
     MemfaultErrorCode_EndpointNotFound = 15,
     MemfaultErrorCode_Disconnected = 16,
+    MemfaultErrorCode_Timeout = 17,
     MemfaultErrorCode_PlatformSpecificBase = 100000,
 };
 
