@@ -13,6 +13,19 @@ typedef NS_ENUM(NSUInteger, MemfaultLogLevel);
 //! Configuration dictionary key to specify your Memfault API key.
 extern NSString* const kMFLTApiKey;
 
+//! Configuration dictionary key to specify the device management keypair.
+//! The keypair must match the public key that is embedded in the
+//! firmware, see memfault_keys.c.
+//! The keypair is expected to be an NSData object containing an elliptic curve
+//! NIST P-256 (secp256r1) keypair. The format follows the ANSI X9.63 standard
+//! using a byte string of 04 || X || Y, where X is the public part and Y the
+//! private part. Note the byte ordering of X and Y is expected to be big-endian.
+//! If you have a .pem file with the keypair, you can use openssl to dump the
+//! raw key data (note that Y is dumped first, then X and the 0x04 byte is
+//! included in the dump):
+//! $ openssl ec -in ec_key.pem -text
+extern NSString* const kMFLTDeviceManagementPrivateKey;
+
 //! Configuration dictionary key to specify Memfault API url to use
 //! (Not needed by default)
 extern NSString* const kMFLTApiBaseURL;
@@ -55,6 +68,12 @@ extern NSString* const kMFLTApiBaseURL;
 //! @param completion Block to call when the device information request has completed or failed.
 //! In case of success, error will be nil and the info property of the device will have been updated.
 - (void)readInfo:(void(^)(NSError *_Nullable error))completion;
+
+//! Read the metrics saved on the device and post them to the Memfault server.
+- (void)readMetrics:(void(^)(NSError *_Nullable error))completion;
+
+//! Read the coredumps saved on the device and post them to the Memfault server.
+- (void)readCoredumps:(void(^)(NSError *_Nullable error))completion;
 
 //! Queries Memfault's services to find if a new update is available
 //! @param completion Block to call when a result has been determined. In
@@ -145,7 +164,11 @@ typedef NS_ENUM(NSUInteger, MemfaultLogLevel) {
 };
 
 typedef NS_ENUM(NSUInteger, MemfaultErrorCode) {
+    MemfaultErrorCode_Success = 0,
     MemfaultErrorCode_InvalidArgument = 1,
+    MemfaultErrorCode_InternalError = 2,
+    MemfaultErrorCode_InvalidState = 3,
+    MemfaultErrorCode_Unsupported = 10,
     MemfaultErrorCode_UnexpectedResponse = 11,
     MemfaultErrorCode_NotFound = 12,
     MemfaultErrorCode_NotImplemented = 13,
@@ -153,6 +176,7 @@ typedef NS_ENUM(NSUInteger, MemfaultErrorCode) {
     MemfaultErrorCode_EndpointNotFound = 15,
     MemfaultErrorCode_Disconnected = 16,
     MemfaultErrorCode_Timeout = 17,
+    MemfaultErrorCode_AuthenticationFailure = 18,
     MemfaultErrorCode_PlatformSpecificBase = 100000,
 };
 

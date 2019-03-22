@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name             = 'Memfault'
-  spec.version          = '0.2.1'
+  spec.version          = '0.3.0'
   spec.summary          = 'Memfault SDK for iOS'
   spec.homepage         = 'https://github.com/memfault/memfault-ios-sdk'
   spec.license          = { :type => 'MIT', :file => 'LICENSE' }
