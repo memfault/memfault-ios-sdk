@@ -30,6 +30,9 @@ extern NSString* const kMFLTDeviceManagementPrivateKey;
 //! (Not needed by default)
 extern NSString* const kMFLTApiBaseURL;
 
+//! Configuration dictionary key to specify Memfault Ingress API url to use
+//! (Not needed by default)
+extern NSString *const kMFLTApiIngressBaseURL;
 
 //! The Memfault SDK "entrypoint"
 @interface Memfault : NSObject
