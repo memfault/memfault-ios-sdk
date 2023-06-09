@@ -1,3 +1,9 @@
+_This repo has been archived and set to read-only. If you are looking for the
+Memfault iOS Cloud library for uploading device chunks, check it out here:_
+https://github.com/memfault/memfault-ios-cloud
+
+---
+
 # Memfault iOS SDK
 
 ## Integration Guide
